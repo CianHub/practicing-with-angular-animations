@@ -53,6 +53,9 @@ import {
       transition("void => *", [
         style({ opacity: "0", transform: "translateX(-100px)" }),
         animate(300)
+      ]),
+      transition("* => void", [
+        animate(300, style({ transform: "translateX(-100px)" }))
       ])
     ])
   ]
@@ -79,5 +82,8 @@ export class AppComponent {
 
   onAdd(item) {
     this.list.push(item);
+  }
+  onDelete(item) {
+    this.list.splice(this.list.findIndex(listItem => listItem === item), 1);
   }
 }
