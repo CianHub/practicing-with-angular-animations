@@ -4,7 +4,9 @@ import {
   state,
   style,
   transition,
-  animate
+  animate,
+  keyframes,
+  group
 } from "@angular/animations";
 
 @Component({
@@ -56,6 +58,34 @@ import {
       ]),
       transition("* => void", [
         animate(500, style({ opacity: 0, transform: "translateX(-100px)" }))
+      ])
+    ]),
+    trigger("list2", [
+      state("in", style({ opacity: "1", transform: "translateX(0)" })),
+      transition("void => *", [
+        animate(
+          1000,
+          keyframes([
+            style({ transform: "translateX(-100px)", opacity: "0", offset: 0 }),
+            style({
+              transform: "translateX(-50px)",
+              opacity: "0.5",
+              offset: 0.3
+            }),
+            style({
+              transform: "translateX(-20px)",
+              opacity: "1",
+              offset: 0.8
+            }),
+            style({ transform: "translateX(0)", opacity: "1", offset: 1 })
+          ])
+        )
+      ]),
+      transition("* => void", [
+        group([
+          animate(200, style({ transform: "translateX(-100px)" })),
+          animate(300, style({ opacity: 0 }))
+        ])
       ])
     ])
   ]
