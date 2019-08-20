@@ -116,4 +116,11 @@ export class AppComponent {
   onDelete(item) {
     this.list.splice(this.list.findIndex(listItem => listItem === item), 1);
   }
+
+  animationStarted(event) {
+    console.log(event);
+  }
+  animationEnded(event) {
+    console.log(event);
+  }
 }
